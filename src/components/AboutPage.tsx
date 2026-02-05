@@ -20,7 +20,6 @@ export function AboutPage() {
       import: 'default' 
     });
 
-    // 2. Extract the URL strings into an array
     return Object.values(images) as string[];
   }, []);
 
@@ -65,7 +64,7 @@ export function AboutPage() {
                 className="relative aspect-square rounded-xl overflow-hidden bg-zinc-900"
               >
                 <img
-                  src={img} // Remove the "/src/" prefix here
+                  src={img}
                   alt=""
                   className="w-full h-full object-cover opacity-50"
                   loading="lazy"
