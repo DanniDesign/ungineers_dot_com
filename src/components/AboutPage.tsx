@@ -14,9 +14,15 @@ export function AboutPage() {
   const detailsRef = useRef<HTMLDetailsElement>(null)
 
   const imageFiles = useMemo(() => {
-    const images = import.meta.glob('/public/gallery/*.{png,jpg,jpeg,webp,svg}', { eager: true })
-    return Object.keys(images).map(path => path.split('/').pop() as string)
-  }, [])
+    const images = import.meta.glob('/src/about_us_gallery/*.{png,jpg,jpeg,webp,svg}', { 
+      eager: true, 
+      query: '?url', 
+      import: 'default' 
+    });
+
+    // 2. Extract the URL strings into an array
+    return Object.values(images) as string[];
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -59,7 +65,7 @@ export function AboutPage() {
                 className="relative aspect-square rounded-xl overflow-hidden bg-zinc-900"
               >
                 <img
-                  src={`/gallery/${img}`}
+                  src={img} // Remove the "/src/" prefix here
                   alt=""
                   className="w-full h-full object-cover opacity-50"
                   loading="lazy"
